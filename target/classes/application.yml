@@ -1,0 +1,31 @@
+server:
+  address: 127.0.0.1
+  port: 8085
+  servlet:
+    context-path: /mssta-parametros
+spring:
+  application:
+    name: mssta-parametros
+  datasource:
+    hikari:
+      maximum-pool-size: 4
+      minimum-idle: 1
+      connection-timeout: 10000
+    url: ${STA_DB_URL:jdbc:postgresql://localhost:5433/stasdds}
+    username: ${STA_DB_USUARIO:}
+    password: ${STA_DB_CONTRASENA:}
+  sql:
+    init:
+      mode: never
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+sta:
+  escritura-habilitada: ${STA_ESCRITURA_HABILITADA:false}
+  jwt:
+    secreto: ${STA_JWT_SECRETO:}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
